@@ -1,4 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import { Header } from './components/Header'
+import { GridMesas } from './components/GridMesas'
+import { SideMenu } from './components/SideMenu'
 import "./App.css";
 
 const mockPedidos = {
@@ -34,7 +37,10 @@ export default function TableManager() {
     { id: 2, numero: 2, estado: "ocupado" },
     { id: 3, numero: 3, estado: "libre"   },
   ]);
+
+  const [pagina, setPagina] = useState('mesas');
   const [pedidos]             = useState(mockPedidos);
+  const [sideMenuAbierto, setSideMenuAbierto]   = useState(false);
   const [menuAbierto, setMenuAbierto]           = useState(null);
   const [modalPedido, setModalPedido]           = useState(null);
   const [modalFactura, setModalFactura]         = useState(null);
@@ -75,51 +81,24 @@ export default function TableManager() {
     <div className="app-container">
 
       {/* ── HEADER ── */}
-      <header className="header">
-        <div className="header-left">
-          <div className="logo-icon">🍽️</div>
-          <div>
-            <h1 className="header-title">Gestión de Mesas</h1>
-            <p className="header-subtitle">SazonSoft Beta V0.0.1</p>
-          </div>
-        </div>
-        <div className="header-right">
-          <div className="stat-badge">
-            <span className="dot dot-green" />
-            <span>{mesas.filter((m) => m.estado === "libre").length} Libres</span>
-          </div>
-          <div className="stat-badge">
-            <span className="dot dot-red" />
-            <span>{mesas.filter((m) => m.estado === "ocupado").length} Ocupadas</span>
-          </div>
-          <button className="btn-agregar" onClick={agregarMesa}>
-            + Agregar Mesa
-          </button>
-        </div>
-      </header>
+      <SideMenu
+        isOpen={sideMenuAbierto}
+        onClose={() => setSideMenuAbierto(false)}
+        onNavigate={setPagina}
+        paginaActiva={pagina}
+      />
+      <Header
+        mesasLibres={mesas.filter((m) => m.estado === "libre").length}
+        mesasOcupadas={mesas.filter((m) => m.estado === "ocupado").length}
+        onAgregarMesa={agregarMesa}
+        onMenuToggle={() => setSideMenuAbierto(prev => !prev)}
+      />
 
       {/* ── GRID ── */}
-      <div className="mesas-grid">
-        {mesas.length === 0 && (
-          <div className="empty-state">
-            <span className="empty-icon">🪑</span>
-            <span>No hay mesas. ¡Agrega una!</span>
-          </div>
-        )}
-        {mesas.map((mesa) => (
-          <div
-            key={mesa.id}
-            className={`mesa-card ${mesa.estado}`}
-            onClick={() => setMenuAbierto(menuAbierto === mesa.id ? null : mesa.id)}
-          >
-            <div className="mesa-icon-wrap">🪑</div>
-            <div className="mesa-numero">Mesa {mesa.numero}</div>
-            <div className={`estado-badge ${mesa.estado}`}>
-              {mesa.estado === "ocupado" ? "● Ocupada" : "● Libre"}
-            </div>
-          </div>
-        ))}
-      </div>
+      <GridMesas
+        mesas={mesas}
+        onMesaClick={(id) => setMenuAbierto(menuAbierto === id ? null : id)}
+      />
 
       {/* ── MENÚ CONTEXTUAL ── */}
       {menuAbierto && mesaActiva && (
