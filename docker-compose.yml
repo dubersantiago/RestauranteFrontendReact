@@ -31,7 +31,5 @@ services:
     image: dusagame/restaurante-frontend:1.0
     ports:
       - "80:80"
-    environment:
-      VITE_API_URL: http://app:8080
     depends_on:
       - app
