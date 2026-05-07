@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL;
+const BASE_URL = window._env_?.VITE_API_URL || import.meta.env.VITE_API_URL || '/api';
 
 const handleResponse = async (res) => {
   if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
@@ -8,13 +8,13 @@ const handleResponse = async (res) => {
 
 export const pedidosService = {
   getAll: () =>
-    fetch(`${BASE}/pedidos`).then(handleResponse),
+    fetch(`${BASE_URL}/pedidos`).then(handleResponse),
 
   getById: (id) =>
-    fetch(`${BASE}/pedidos/${id}`).then(handleResponse),
+    fetch(`${BASE_URL}/pedidos/${id}`).then(handleResponse),
 
   create: (data) =>
-    fetch(`${BASE}/pedidos`, {
+    fetch(`${BASE_URL}/pedidos`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),

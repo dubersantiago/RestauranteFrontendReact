@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL;
+const BASE_URL = window._env_?.VITE_API_URL || import.meta.env.VITE_API_URL || '/api';
 
 const handleResponse = async (res) => {
   if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
@@ -9,22 +9,22 @@ const handleResponse = async (res) => {
 
 export const productosService = {
   getAll: () =>
-    fetch(`${BASE}/productos`).then(handleResponse),
+    fetch(`${BASE_URL}/productos`).then(handleResponse),
 
   create: (data) =>
-    fetch(`${BASE}/productos`, {
+    fetch(`${BASE_URL}/productos`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     }).then(handleResponse),
 
   update: (id, data) =>
-    fetch(`${BASE}/productos/${id}`, {
+    fetch(`${BASE_URL}/productos/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     }).then(handleResponse),
 
   delete: (id) =>
-    fetch(`${BASE}/productos/${id}`, { method: 'DELETE' }).then(handleResponse),
+    fetch(`${BASE_URL}/productos/${id}`, { method: 'DELETE' }).then(handleResponse),
 };
