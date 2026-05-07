@@ -1217,3 +1217,284 @@ body {
   .pedido-linea { grid-template-columns: 1fr 60px 34px; }
   .linea-subtotal { display: none; }
 }
+
+/* ===== COCINA ===== */
+.cocina-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 24px 40px 40px;
+  align-items: start;
+}
+
+.cocina-columna {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cocina-columna-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid;
+}
+
+.cocina-col-icon { font-size: 18px; }
+
+.cocina-col-titulo {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cocina-col-count {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.cocina-columna-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  min-height: 120px;
+}
+
+.cocina-vacio {
+  text-align: center;
+  color: #475569;
+  font-size: 13px;
+  padding: 20px 0;
+  font-style: italic;
+}
+
+.cocina-pedido-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.cocina-pedido-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.cocina-pedido-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cocina-pedido-id {
+  font-size: 15px;
+  font-weight: 700;
+  color: #60a5fa;
+  font-variant-numeric: tabular-nums;
+}
+
+.cocina-pedido-hora {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.cocina-pedido-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cocina-pedido-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.cocina-item-cantidad {
+  font-weight: 700;
+  color: #60a5fa;
+  min-width: 28px;
+}
+
+.cocina-pedido-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cocina-pedido-total {
+  font-size: 16px;
+  font-weight: 800;
+  color: #60a5fa;
+  white-space: nowrap;
+}
+
+.btn-avanzar {
+  padding: 7px 14px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.35);
+  transition: transform 0.1s, opacity 0.1s;
+  white-space: nowrap;
+}
+
+.btn-avanzar:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-avanzar:active { transform: translateY(0); }
+
+.cocina-pedido-detalle {
+  margin-top: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 8px;
+}
+
+.cocina-detalle-toggle {
+  font-size: 12px;
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cocina-detalle-toggle:hover { color: #94a3b8; }
+
+.cocina-detalle-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.btn-estado {
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.btn-estado:hover { background: rgba(255, 255, 255, 0.1); }
+.btn-estado:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.cocina-cancelados {
+  padding: 24px 40px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cocina-cancelados-titulo {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f87171;
+  margin-bottom: 14px;
+}
+
+.cocina-cancelados-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cocina-cancelado-item {
+  display: flex;
+  gap: 16px;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.06);
+  border: 1px solid rgba(248, 113, 113, 0.15);
+  border-radius: 10px;
+  font-size: 13px;
+  color: #fca5a5;
+}
+
+.toast-cocina {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  cursor: pointer;
+  max-width: 90vw;
+  animation: toast-in 0.3s ease-out;
+}
+
+.toast-cocina.toast-ok {
+  background: linear-gradient(135deg, #14532d, #166534);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: #86efac;
+}
+
+.toast-cocina.toast-err {
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .cocina-board { padding: 16px 20px 32px; grid-template-columns: 1fr 1fr; }
+  .cocina-cancelados { padding: 16px 20px 32px; }
+}
+
+@media (max-width: 480px) {
+  .cocina-board { padding: 12px 16px 28px; grid-template-columns: 1fr; }
+  .cocina-cancelados { padding: 12px 16px 28px; }
+  .cocina-pedido-footer { flex-direction: column; align-items: flex-start; }
+  .btn-avanzar { width: 100%; text-align: center; }
+}
+
+/* ===== TOAST ERROR ===== */
+.toast-error {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 12px;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fca5a5;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 12px 40px rgba(239, 68, 68, 0.35);
+  z-index: 2000;
+  cursor: pointer;
+  max-width: 90vw;
+  animation: toast-in 0.3s ease-out;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}

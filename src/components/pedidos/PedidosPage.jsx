@@ -10,6 +10,7 @@ export function PedidosPage() {
   const [error, setError]                   = useState(null);
   const [detallePedido, setDetallePedido]   = useState(null);
   const [modalCrear, setModalCrear]         = useState(false);
+  const [errorCrear, setErrorCrear]         = useState(null);
 
   const cargar = () => {
     setCargando(true);
@@ -23,9 +24,14 @@ export function PedidosPage() {
   useEffect(() => { cargar(); }, []);
 
   const crearPedido = async (body) => {
-    const nuevo = await pedidosService.create(body);
-    setPedidos(prev => [nuevo, ...prev]);
-    setModalCrear(false);
+    setErrorCrear(null);
+    try {
+      const nuevo = await pedidosService.create(body);
+      setPedidos(prev => [nuevo, ...prev]);
+      setModalCrear(false);
+    } catch (err) {
+      setErrorCrear(err.message);
+    }
   };
 
   return (
@@ -102,8 +108,15 @@ export function PedidosPage() {
       {modalCrear && (
         <ModalCrearPedido
           onCrear={crearPedido}
-          onCerrar={() => setModalCrear(false)}
+          onCerrar={() => { setModalCrear(false); setErrorCrear(null); }}
         />
+      )}
+
+      {errorCrear && (
+        <div className="toast-error" onClick={() => setErrorCrear(null)}>
+          <span className="toast-icon">⚠️</span>
+          <span>{errorCrear}</span>
+        </div>
       )}
     </div>
   );

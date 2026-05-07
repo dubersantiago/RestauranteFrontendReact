@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Header } from './components/Header';
 import { SideMenu } from './components/SideMenu';
 import { PedidosPage } from './components/pedidos/PedidosPage';
+import { CocinaPage } from './components/cocina/CocinaPage';
 import { ProductosPage } from './components/productos/ProductosPage';
 import { CategoriasPage } from './components/categorias/CategoriasPage';
 import './App.css';
@@ -21,6 +22,7 @@ function App() {
       <Header onMenuToggle={() => setSideMenuAbierto(prev => !prev)} />
       <main>
         {pagina === 'pedidos'    && <PedidosPage />}
+        {pagina === 'cocina'     && <CocinaPage />}
         {pagina === 'productos'  && <ProductosPage />}
         {pagina === 'categorias' && <CategoriasPage />}
       </main>

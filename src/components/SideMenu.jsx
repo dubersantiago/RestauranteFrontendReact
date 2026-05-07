@@ -23,6 +23,13 @@ export const SideMenu = ({ isOpen, onClose, onNavigate, paginaActiva }) => {
             <span>Pedidos</span>
           </button>
           <button
+            className={`sidemenu-item ${paginaActiva === 'cocina' ? 'active' : ''}`}
+            onClick={() => { onNavigate('cocina'); onClose(); }}
+          >
+            <span className="sidemenu-item-icon">🔥</span>
+            <span>Cocina</span>
+          </button>
+          <button
             className={`sidemenu-item ${paginaActiva === 'productos' ? 'active' : ''}`}
             onClick={() => { onNavigate('productos'); onClose(); }}
           >
